@@ -12,6 +12,5 @@ int main() {
 
     cout << vec.size() << endl;
     cout << vec.capacity() << endl;
-    cout << "chomu" << endl;
     return 0;
 }
