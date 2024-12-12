@@ -14,4 +14,6 @@ int main() {
     changeVal(a); // passing the value of a to changeVal func
 
     cout << "inside changeVal func which is now in main func, value of a: " << a << endl;
+
+    return 0;
 }
