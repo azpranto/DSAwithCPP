@@ -1,3 +1,6 @@
+//binary search won't be applied on the array, it will on the possible answers
+// painter's partition problem is same as this
+
 #include <iostream>
 #include <vector>
 
