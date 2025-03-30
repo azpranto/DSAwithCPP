@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -22,20 +23,22 @@ bool isPossible(vector<int> &arr, int N, int C, int minimumAllowedDist) { //O(N)
     return false;
 }
 
-int getDistance(vector<int> &arr, int cows) { //O(NlogN)
+int getDistance(vector<int> &arr, int N, int C) { //O(NlogN)
     sort(arr.begin(), arr.end());
 
-    int st = 1, end = arr[N-1] - arr[0], ans = -1;
+    int st = 1, end = arr[N-1]-arr[0], ans = -1;
     while(st <= end) { //O(logRange * N)
         int mid = st + (end - st) / 2;
 
-        if(isPossible(stalls, cows, mid)) {
+        if(isPossible(arr, N, C, mid)) {
             ans = mid;
             st = mid + 1;
         } else {
             end = mid - 1;
         }
     }
+
+    return ans;
 }
 
 int main() {
