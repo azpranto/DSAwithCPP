@@ -31,3 +31,5 @@ int main() {
     printArray(arr, n);
     return 0;
 }
+
+// to print in decreasing order, just change the condition in the while loop to arr[prev] < curr (basicly, in the comparison segment)
