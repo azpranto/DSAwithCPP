@@ -2,6 +2,12 @@
 #include <vector>
 #include <list>
 #include <deque>
+#include <stack>
+#include <queue>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -94,7 +100,8 @@ int main() {
 
     //deque
     // operation works exactly similar like list, but it is more efficient for random access.
-    // there are 2 deques in C++: deque and dequeue. deque means double-ended queue, which allows insertion and deletion at both ends. dequeue pops/deletes any running queue
+    // there are 2 deques in C++: deque and dequeue. deque means double-ended queue, which allows insertion and deletion at both ends. 
+    // dequeue pops/deletes any running queue
     
     deque<int> d = {1, 2, 3, 4, 5};
 
@@ -127,6 +134,203 @@ int main() {
         cout << p.first << " " << p.second << endl; // prints the first and second elements of each pair in the vector
     }
 
+    //stack
+    //last in, first out (LIFO) data structure
 
+    stack<int> s; // stack of integers
+
+    s.push(1); // TC O(1), SC O(n)
+    s.push(2);
+    s.push(3);
+
+    cout << "Top element of stack: " << s.top() << endl; // returns the top element of the stack, which is 3
+    /*
+    while(!s.empty()) { // checks if the stack is empty
+        cout << s.top() << " "; // prints the top element of the stack
+        s.pop(); // removes the top element from the stack
+    }
+    cout << endl;
+    // Note: stack does not support iterators, so we cannot iterate over it like vector or list.
+    // We can only access the top element, check if it is empty, push new elements, and pop elements from the top.
+    
+    */
+    
+    stack<int> s2; // another stack of integers
+
+    s2.swap(s); // swaps the contents of s2 and s. now s2 has the elements 1, 2, 3 and s is empty.
+
+    cout << "size of s: " << s.size() << endl; // prints the size of the stack s, which is 0
+    cout << "size of s2: " << s2.size() << endl; // prints the size of the stack s2, which is 3
+
+    //queue
+    //first in, first out (FIFO) data structure
+
+    queue<int> q; // queue of integers
+
+    q.push(1); // TC O(1), SC O(n)
+    q.push(2);
+    q.push(3);
+
+    cout << "Front element of queue: " << q.front() << endl; // returns the front element of the queue, which is 1
+    cout << "Back element of queue: " << q.back() << endl; // returns the back element of the queue, which is 3
+
+    while(!q.empty()) { // checks if the queue is empty
+        cout << q.front() << " "; // prints the front element of the queue
+        q.pop(); // removes the front element from the queue
+    }
+    cout << endl;
+
+    //note: size, swap, and empty functions work the same way as in stack.
+
+    //priority queue
+    // a priority queue is a special type of queue where elements are ordered based on their priority. the highest priority element is at the front of the queue.
+    
+    priority_queue<int> pq; // max heap by default, which means the largest element is at the top
+
+    pq.push(5); // TC O(log n), SC O(n)
+    pq.push(3);
+    pq.push(10);
+    pq.push(4);
+
+    cout << "Top element of priority queue: " << pq.top() << endl; // returns the top element of the priority queue, which is 10
+
+    while(!pq.empty()) { // checks if the priority queue is empty
+        cout << pq.top() << " "; // prints the top element of the priority queue
+        pq.pop(); // removes the top element from the priority queue
+    }
+
+    priority_queue<int, vector<int>, greater<int>> rpq; // min heap, which means the smallest element is at the top
+
+    rpq.push(5); // TC O(log n), SC O(n)
+    rpq.push(3);
+    rpq.push(10);
+    rpq.push(4);
+
+    cout << "Top element of priority queue: " << rpq.top() << endl; // returns the top element of the priority queue, which is 3
+
+    while(!rpq.empty()) { // checks if the priority queue is empty
+        cout << rpq.top() << " "; // prints the top element of the priority queue
+        rpq.pop(); // removes the top element from the priority queue
+    }
+
+    //push, emplace, pop, top, size, empty, swap functions work the same way as in stack and queue.
+
+
+    //map
+
+    map<string, int> m; // map of string to int
+
+    m["tv"] = 100; // inserts a key-value pair into the map, where "tv" is the key and 100 is the value
+    m["laptop"] = 100;
+    m["headphone"] = 50;
+    m["tablet"] = 120;
+    m["watch"] = 50;
+    //these all get stored in lexicographical order of the keys, which is "headphone", "laptop", "tablet", "tv", "watch".
+
+    m.insert({"phone", 200}); // another way to insert a key-value pair into the map
+    m.emplace("camera", 300); // emplace can also be used to insert a key-value pair into the map. it constructs the pair in place. no need to create a pair object first.
+
+    for(auto p: m) { // iterating over the map using a range-based for loop
+        cout << p.first << " " << p.second << endl; // prints the key and value of each pair in the map
+    }
+
+    cout << "count of tv: " << m.count("tv") << endl; // returns the number of elements with the key "tv". it will return 1 if "tv" is present in the map, otherwise 0.
+    cout << "value of tv: " << m["tv"] << endl; // returns the value associated with the key "tv". if "tv" is not present in the map, it will insert a new key "tv" with a value of 0 and return 0.
+
+    m.erase("tv"); // removes the key "tv" from the map. if "tv" is not present in the map, it does nothing.
+
+    if(m.find("tv") != m.end()) { // checks if the key "tv" is present in the map
+        cout << "tv is present in the map" << endl;
+    } else {
+        cout << "tv is not present in the map" << endl; // this will be printed since we erased "tv" from the map
+    }
+
+
+    //multimap
+    multimap<string, int> mm; // multimap of string to int, allows duplicate keys
+
+    mm.insert({"tv", 100}); // inserts a key-value pair into the multimap, where "tv" is the key and 100 is the value
+    mm.insert({"tv", 200}); // inserts another key-value pair with the same key "tv" but a different value 200
+    mm.insert({"tv", 100});
+    mm.emplace("laptop", 100); // emplace can also be used to insert a key-value pair into the multimap. it constructs the pair in place. no need to create a pair object first.
+    mm.emplace("tv", 200); // inserts another key-value pair with the same key "tv" but a different value 200
+
+    //mm.erase("tv"); // removes all elements with the key "tv" from the multimap. if "tv" is not present in the multimap, it does nothing.
+    mm.erase(mm.find("tv")); // removes only the first occurrence of the key "tv" from the multimap. if "tv" is not present in the multimap, it does nothing.
+
+    for(auto p: mm) { // iterating over the multimap using a range-based for loop
+        cout << p.first << " " << p.second << endl; // prints the key and value of each pair in the multimap
+    }
+
+    //unordered_map
+
+    unordered_map<string, int> um; // unordered_map of string to int, does not allow duplicate keys, and does not maintain any order
+
+    um["tv"] = 100; // inserts a key-value pair into the unordered_map, where "tv" is the key and 100 is the value
+    um["laptop"] = 100;
+    um["headphone"] = 50;
+    um["tablet"] = 120;
+    um["watch"] = 50;
+    //these all get stored in no particular order.
+
+    um.insert({"phone", 200}); // another way to insert a key-value pair into the unordered_map
+    um.emplace("camera", 300); // emplace can also be used to insert a key-value pair into the unordered_map. it constructs the pair in place. no need to create a pair object first.
+
+    for(auto p: um) { // iterating over the unordered_map using a range-based for loop
+        cout << p.first << " " << p.second << endl; // prints the key and value of each pair in the unordered_map
+    }
+
+    cout << "count of tv: " << um.count("tv") << endl; // returns the number of elements with the key "tv". it will return 1 if "tv" is present in the unordered_map, otherwise 0.
+    cout << "value of tv: " << um["tv"] << endl; // returns the value associated with the key "tv". if "tv" is not present in the unordered_map, it will insert a new key "tv" with a value of 0 and return 0.
+
+    um.erase("tv"); // removes the key "tv" from the unordered_map. if "tv" is not present in the unordered_map, it does nothing.
+
+    if(um.find("tv") != um.end()) { // checks if the key "tv" is present in the unordered_map
+        cout << "tv is present in the unordered_map" << endl;
+    } else {
+        cout << "tv is not present in the unordered_map" << endl; // this will be printed since we erased "tv" from the unordered_map
+    }
+
+    //difference between map and unordered_map:
+    //1. Ordering: map maintains the order of elements based on the key, while unordered_map does not maintain any order.
+    //2. Implementation: map is typically implemented as a balanced binary tree (e.g., red-black tree), while unordered_map is implemented as a hash table.
+    //3. Performance: map has O(log n) time complexity for insertions, deletions, and lookups, while unordered_map has average O(1) time complexity for these operations.
+    //4. Memory usage: unordered_map may use more memory due to the underlying hash table and its need for rehashing.
+
+    //set
+    set<int> s1; // set of integers, does not allow duplicate elements and maintains order
+
+    s1.insert(1);
+    s1.insert(2);
+    s1.insert(3);
+    s1.insert(2); // this will not insert 2 again, since set does not allow duplicate elements
+
+    cout << "Size of set: " << s1.size() << endl; // returns the number of elements in the set, which is 3. not 4, because 2 was not inserted again.
+
+    for(int val : s1) {
+        cout << val << " "; // prints the elements in the set in ascending order
+    }
+    cout << endl;
+
+    // set supports various operations like insert, emplace, size, empty, erase, find, count, and iterators.
+
+    //lower_bound and upper_bound
+    s1.insert(4);
+    s1.insert(5);
+    s1.insert(6);
+    cout << "Lower bound of 4: " << *(s1.lower_bound(4)) << endl; 
+    // returns the first element that is not less than 4, which is 4. if 4 is not present in the set, it returns the next greater element. if there is no greater element, it returns end(). which possibly returns 0 or some undefined value, so we should check if it is not equal to end() before dereferencing it.
+    cout << "Upper bound of 4: " << *(s1.upper_bound(4)) << endl;
+    // returns the first element that is greater than 4, which is 5. if 4 is not present in the set, it returns the next greater element. if there is no greater element, it returns end(). which possibly returns 0 or some undefined value, so we should check if it is not equal to end() before dereferencing it.
+
+    //multiset
+    multiset<int> ms; // multiset of integers, allows duplicate elements and maintains order
+
+    //unordered_set
+    unordered_set<int> us; // unordered_set of integers, does not allow duplicate elements and does not maintain any order
+    //TC O(1) for insertions, deletions, and lookups on average, but can be O(n) in the worst case due to hash collisions.
+    //this is frequently used when we need to store unique elements and do not care about the order of elements,  due to its average O(1) time complexity for insertions, deletions, and lookups.
+
+    
     return 0;
 }
