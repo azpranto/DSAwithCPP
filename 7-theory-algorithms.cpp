@@ -94,6 +94,15 @@ int main() {
 
     //set bits
 
-    // __builtin_popcount(); is not ideal for industry usage. in CP, it is used frequently. 
+    // __builtin_popcount(); is not ideal for industry usage. in CP, it is used frequently. it comes only with GCC compiler, so it is not portable. it counts the number of set bits in an integer. it is a built-in function in GCC.
+
+    int n = 15;
+    long int n2 = 15;
+    long long int n3 = 15;
+
+    cout << "Number of set bits in " << n << ": " << __builtin_popcount(n) << endl; // counts the number of set bits in n, TC O(log n), SC O(1)
+    cout << "Number of set bits in " << n2 << ": " << __builtin_popcountl(n2) << endl; // counts the number of set bits in n2, TC O(log n), SC O(1)
+    cout << "Number of set bits in " << n3 << ": " << __builtin_popcountll(n3) << endl; // counts the number of set bits in n3, TC O(log n), SC O(1)
+
     return 0;
 }
